@@ -20,10 +20,10 @@ Sigue estos pasos para configurar y ejecutar el proyecto:
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/brayandiazc/nodeApi_musicStore.git
+git clone https://github.com/brayandiazc/musicstore-api-node.git
 
 # Navegar al directorio del proyecto
-cd nodeApi_musicStore
+cd musicstore-api-node
 
 # Instalar dependencias
 npm install
@@ -31,7 +31,13 @@ npm install
 
 ## Configuración del Entorno
 
-Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido, ajustando la URI de MongoDB con tus credenciales:
+Copia el archivo de ejemplo y ajusta la URI de MongoDB con tus credenciales:
+
+```bash
+cp .env.example .env
+```
+
+Contenido esperado del `.env`:
 
 ```bash
 PORT=3000
@@ -145,6 +151,22 @@ Para crear un usuario y asociarle guitarras de ejemplo, puedes hacer una solicit
      "usuario": "<ID del usuario>"
    }
    ```
+
+## Documentación
+
+La documentación del proyecto vive en [`docs/`](docs/README.md):
+
+- [Arquitectura](docs/architecture/architecture.md) · [Stack](docs/architecture/stack.md) · [Modelo de datos](docs/architecture/database.md) · [API](docs/architecture/api.md) · [Autenticación](docs/architecture/auth.md)
+- [Convenciones](docs/conventions/README.md) · [Decisiones (ADR)](docs/decisions/README.md) · [Producto](docs/product/roadmap.md)
+
+## Contribuir
+
+Antes de contribuir, revisa:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — flujo de trabajo y cómo colaborar.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — código de conducta.
+- [SECURITY.md](SECURITY.md) — cómo reportar vulnerabilidades.
+- [CHANGELOG.md](CHANGELOG.md) — historial de cambios.
 
 ## Autor
 

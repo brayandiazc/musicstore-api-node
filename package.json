@@ -1,5 +1,5 @@
 {
-  "name": "nodeapi_musicstore",
+  "name": "musicstore-api-node",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -7,10 +7,29 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "rest-api",
+    "crud",
+    "mvc"
+  ],
   "author": "Brayan Diaz C",
-  "license": "ISC",
-  "description": "Tienda de musica",
+  "license": "MIT",
+  "description": "API REST con Node.js, Express y MongoDB para gestionar usuarios y guitarras con una relación uno a muchos.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brayandiazc/musicstore-api-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brayandiazc/musicstore-api-node/issues"
+  },
+  "homepage": "https://github.com/brayandiazc/musicstore-api-node#readme",
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
