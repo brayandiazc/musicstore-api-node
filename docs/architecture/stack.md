@@ -21,18 +21,19 @@
 
 ## DevOps & Herramientas
 
-| Categoría | Tecnología                                                  |
-| --------- | ----------------------------------------------------------- |
-| Dev       | nodemon (^3.1.7) — recarga en caliente en desarrollo        |
-| CI/CD     | GitHub Actions (workflow de ejemplo en `.github/workflows/`) |
-| Testing   | Aún no configurado (ver [`../conventions/testing.md`](../conventions/testing.md)) |
+| Categoría   | Tecnología                                                           |
+| ----------- | -------------------------------------------------------------------- |
+| Dev         | nodemon (^3.1.7) — recarga en caliente en desarrollo                 |
+| CI/CD       | GitHub Actions (`.github/workflows/ci.yml`) — lint + formato + tests |
+| Testing     | Jest (^30) + Supertest (^7)                                          |
+| Lint/Format | ESLint (^10) + Prettier (^3)                                         |
 
 ## Justificación de elecciones
 
-| Tecnología elegida | Alternativa descartada | Razón                                                          |
-| ------------------ | ---------------------- | -------------------------------------------------------------- |
-| MongoDB + Mongoose | SQL + ORM relacional   | Modelo documental flexible y validaciones a nivel de esquema   |
-| Express            | Framework full-stack   | Se busca una API REST liviana, sin capa de vistas              |
+| Tecnología elegida | Alternativa descartada | Razón                                                        |
+| ------------------ | ---------------------- | ------------------------------------------------------------ |
+| MongoDB + Mongoose | SQL + ORM relacional   | Modelo documental flexible y validaciones a nivel de esquema |
+| Express            | Framework full-stack   | Se busca una API REST liviana, sin capa de vistas            |
 
 ## Versiones mínimas soportadas
 

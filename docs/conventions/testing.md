@@ -5,17 +5,25 @@
 
 ## Stack
 
-- **Framework de tests**: [FRAMEWORK_TEST].
-- **Cobertura**: [HERRAMIENTA_COBERTURA].
-- **Tests de sistema/E2E**: [HERRAMIENTA_E2E] (si aplica).
+- **Framework de tests**: [Jest](https://jestjs.io/).
+- **Tests HTTP**: [Supertest](https://github.com/ladjs/supertest) contra la app Express (`app.js`).
+- **Cobertura**: Jest (`--coverage`).
 
-## Tipos de test
+## Organización
 
-| Tipo          | Qué cubre                     | Carpeta              |
-| ------------- | ----------------------------- | -------------------- |
-| Unitarios     | Funciones/clases aisladas     | `[RUTA_UNIT]`        |
-| Integración   | Interacción entre componentes | `[RUTA_INTEGRACION]` |
-| E2E / sistema | Flujos completos de usuario   | `[RUTA_E2E]`         |
+- Los tests viven en `tests/` con sufijo `.test.js`.
+- La app Express se exporta desde `app.js` (sin `listen` ni conexión a BD) para
+  poder testearla de forma aislada; `index.js` sólo conecta a MongoDB y arranca.
+
+| Tipo      | Qué cubre                                              | Archivo                |
+| --------- | ------------------------------------------------------ | ---------------------- |
+| Unitarios | Validaciones de los esquemas Mongoose (`validateSync`) | `tests/models.test.js` |
+| App/HTTP  | Healthcheck y manejo de rutas (sin BD)                 | `tests/app.test.js`    |
+
+> Las validaciones de modelo se prueban con `validateSync()`, que ejecuta los
+> validadores del esquema **sin conexión a la base de datos** → tests rápidos,
+> deterministas y offline. Para tests de endpoints que sí tocan MongoDB, el
+> siguiente paso es integrar `mongodb-memory-server`.
 
 ## Reglas
 
@@ -23,26 +31,15 @@
 - Estructura **Arrange-Act-Assert** (AAA): preparar, ejecutar, verificar.
 - Un test verifica **una** cosa; nombres descriptivos del comportamiento esperado.
 - Los tests deben ser deterministas (sin dependencia de red, reloj o orden).
-- Cobertura mínima esperada: [PORCENTAJE]%.
-
-## Ejemplos
-
-```text
-describe "[Unidad bajo prueba]"
-  it "[comportamiento esperado] cuando [condición]"
-    # Arrange
-    # Act
-    # Assert
-```
 
 ## Comandos útiles
 
 ```bash
-[COMANDO_TEST]            # Ejecutar todos los tests
-[COMANDO_TEST_COBERTURA]  # Con reporte de cobertura
-[COMANDO_TEST_WATCH]      # Modo watch
+npm test              # Ejecutar todos los tests
+npm run test:coverage # Con reporte de cobertura
+npm run test:watch    # Modo watch
 ```
 
 ## Referencias
 
-- [Documentación del framework de tests].
+- [Jest](https://jestjs.io/docs/getting-started) · [Supertest](https://github.com/ladjs/supertest)

@@ -43,21 +43,21 @@ musicstore-api-node/
 
 ## Componentes
 
-| Componente          | Responsabilidad                                                      | Tecnología |
-| ------------------- | ------------------------------------------------------------------- | ---------- |
-| `index.js`          | Configura CORS, `express.json`, conecta a la BD y monta las rutas   | Express    |
-| `routes/`           | Mapean cada verbo HTTP + ruta a un método del controlador           | Express Router |
-| `controllers/`      | Implementan el CRUD y responden con JSON / códigos de estado        | Node.js    |
-| `models/`           | Definen esquema, validaciones y relaciones sobre MongoDB            | Mongoose   |
-| `config/db.js`      | Establece la conexión a MongoDB usando `MONGODB_URI`                | Mongoose   |
+| Componente     | Responsabilidad                                                   | Tecnología     |
+| -------------- | ----------------------------------------------------------------- | -------------- |
+| `index.js`     | Configura CORS, `express.json`, conecta a la BD y monta las rutas | Express        |
+| `routes/`      | Mapean cada verbo HTTP + ruta a un método del controlador         | Express Router |
+| `controllers/` | Implementan el CRUD y responden con JSON / códigos de estado      | Node.js        |
+| `models/`      | Definen esquema, validaciones y relaciones sobre MongoDB          | Mongoose       |
+| `config/db.js` | Establece la conexión a MongoDB usando `MONGODB_URI`              | Mongoose       |
 
 ## Decisiones clave
 
-| Decisión                                   | Razón                                                        |
-| ------------------------------------------ | ------------------------------------------------------------ |
-| Patrón MVC (routes → controllers → models) | Separa responsabilidades y facilita el crecimiento del CRUD  |
-| Validaciones en el esquema Mongoose        | Centraliza las reglas de datos junto al modelo               |
-| Relación 1:N Usuario → Guitarra por `ref`  | Permite `populate` de las guitarras de cada usuario          |
+| Decisión                                   | Razón                                                       |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| Patrón MVC (routes → controllers → models) | Separa responsabilidades y facilita el crecimiento del CRUD |
+| Validaciones en el esquema Mongoose        | Centraliza las reglas de datos junto al modelo              |
+| Relación 1:N Usuario → Guitarra por `ref`  | Permite `populate` de las guitarras de cada usuario         |
 
 > El detalle y las alternativas de cada decisión relevante se registran como
 > ADRs en [`../decisions/`](../decisions/README.md).

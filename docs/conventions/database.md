@@ -8,50 +8,61 @@
 ## Stack
 
 - **Motor**: MongoDB.
-- **Capa de acceso / ORM**: [ORM].
-- **Migraciones**: [HERRAMIENTA_MIGRACIONES].
+- **Capa de acceso / ODM**: Mongoose.
+- **Migraciones**: no se usan; Mongoose sincroniza esquemas e índices al arrancar.
 
 ## Reglas de modelado
 
-- **Primary keys**: [estrategia — p. ej. UUID o autoincremental] de forma consistente.
-- **Nombres**: tablas y columnas en [convención — snake_case], en [idioma].
-- **Timestamps**: toda tabla tiene `created_at` y `updated_at`.
-- **Foreign keys**: siempre con índice; `NOT NULL` salvo justificación explícita.
-- **Tipos preferidos**:
+- **Identificadores**: se usa el `_id` (ObjectId) que genera MongoDB; las
+  referencias entre documentos se guardan como `ObjectId` con `ref`.
+- **Nombres**: modelos en `PascalCase` singular (`Usuario`, `Guitarra`); campos
+  en `camelCase`, en español (coherente con el dominio del proyecto).
+- **Timestamps**: todos los esquemas usan `{ timestamps: true }` → `createdAt` y `updatedAt`.
+- **Validación en el esquema**: las reglas (requerido, longitud, rango, unicidad,
+  formato) viven en el esquema Mongoose, no en los controladores.
+- **Relaciones**: se modelan por referencia (`ObjectId` + `ref`) y se resuelven
+  con `populate`. Los campos de relación obligatorios llevan `required`.
 
-| Caso              | Tipo               |
-| ----------------- | ------------------ |
-| Email             | [TIPO]             |
-| Texto corto       | [TIPO]             |
-| Texto largo       | [TIPO]             |
-| JSON estructurado | [TIPO]             |
-| Dinero            | [TIPO decimal]     |
-| Booleano          | [TIPO] con default |
+## Tipos preferidos
 
-## Migraciones
+| Caso             | Tipo Mongoose                              |
+| ---------------- | ------------------------------------------ |
+| Texto            | `String` (con `minlength`/`maxlength`)     |
+| Email            | `String` con `match` y `unique`            |
+| Números / dinero | `Number` (con `min`/`max`)                 |
+| Booleano         | `Boolean` con `default`                    |
+| Fecha            | `Date` (con `default: Date.now` si aplica) |
+| Referencia       | `ObjectId` con `ref`                       |
 
-- Reversibles y no destructivas siempre que sea posible.
-- Una migración por cambio lógico; nunca editar una migración ya aplicada en `main`.
-- Revisar el impacto en datos existentes antes de aplicar en producción.
+## Índices y unicidad
 
-## Ejemplos
+- Declarar `unique: true` en los campos que deben ser únicos (`Usuario.email`,
+  `Guitarra.nombre`) — Mongoose crea el índice correspondiente.
+- Revisar el impacto de un `unique` sobre datos existentes antes de desplegarlo.
 
-```text
-crear tabla [recurso]
-  id           [pk]
-  [referencia] [fk, not null, indexado]
-  nombre       [texto, not null]
-  timestamps
-```
+## Ejemplo
 
-## Comandos útiles
-
-```bash
-[COMANDO_CREAR_MIGRACION]
-[COMANDO_MIGRAR]
-[COMANDO_ROLLBACK]
+```js
+const guitarraSchema = new mongoose.Schema(
+  {
+    nombre: {
+      type: String,
+      required: true,
+      unique: true,
+      minlength: 3,
+      maxlength: 50,
+    },
+    precio: { type: Number, required: true, min: 100, max: 10000 },
+    usuario: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Usuario",
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 ```
 
 ## Referencias
 
-- [Documentación del ORM / motor de base de datos].
+- [Mongoose — Schemas](https://mongoosejs.com/docs/guide.html) · [Validation](https://mongoosejs.com/docs/validation.html)

@@ -3,15 +3,10 @@
 Esta carpeta contiene los workflows de [GitHub Actions](https://docs.github.com/actions)
 del proyecto.
 
-Como la plantilla es agnóstica del stack, **no incluye workflows listos para
-ejecutar**: solo un esqueleto de ejemplo. Adáptalo (o créalo) según tu lenguaje
-y herramientas.
+## Workflow activo
 
-## Esqueleto incluido
-
-- [`ci.example.yml`](ci.example.yml) — pipeline de CI neutro (lint → test → build).
-  Tiene la extensión `.example` **a propósito** para que GitHub no lo ejecute.
-  Cuando lo adaptes a tu stack, renómbralo a `ci.yml`.
+- [`ci.yml`](ci.yml) — ejecuta `npm run lint`, `npm run format:check` y `npm test`
+  en cada push/PR a `main` y `develop`, sobre Node 18/20/22.
 
 ## Workflows recomendados
 

@@ -14,7 +14,7 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       required: [true, "El email es obligatorio"],
       unique: true,
-      match: [/.+\@.+\..+/, "El email debe tener un formato válido"],
+      match: [/.+@.+\..+/, "El email debe tener un formato válido"],
     },
     // Edad del usuario, opcional, debe ser mayor o igual a 18
     edad: {

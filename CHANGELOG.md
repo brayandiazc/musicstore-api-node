@@ -19,6 +19,26 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Security
 
+## [1.1.0] - 2026-07-02
+
+### Added
+
+- Suite de tests con **Jest** y **Supertest** (`tests/`): validación de modelos y healthcheck.
+- **ESLint** (flat config) y **Prettier** con scripts `lint`, `lint:fix`, `format`, `format:check`.
+- Workflow de CI real (`.github/workflows/ci.yml`): lint + formato + tests en Node 18/20/22.
+- Endpoint de healthcheck `GET /` que responde `{ "status": "ok" }`.
+- Convenciones documentadas con contenido real: `testing`, `quality-tooling`, `deploy`, `database`.
+- Glosario del proyecto poblado.
+
+### Changed
+
+- La app Express se extrae a `app.js` (exportable y testeable); `index.js` solo conecta a la BD y arranca.
+- README con sección de scripts y estructura del proyecto actualizada.
+
+### Fixed
+
+- Escape innecesario (`\@`) en el regex de validación de email del modelo `Usuario`.
+
 ## [1.0.0] - 2026-07-02
 
 ### Added
@@ -34,6 +54,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 <!--
 Enlaces de comparación entre versiones:
-[Unreleased]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/brayandiazc/musicstore-api-node/releases/tag/v1.0.0
 -->

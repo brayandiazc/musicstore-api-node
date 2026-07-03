@@ -16,11 +16,11 @@ No expongas esta API a Internet sin añadir una capa de autenticación primero.
 
 ## Modelo de identidad (actual)
 
-| Concepto | Descripción                                                          |
-| -------- | ------------------------------------------------------------------- |
+| Concepto | Descripción                                                           |
+| -------- | --------------------------------------------------------------------- |
 | Usuario  | Propietario de guitarras. Campos: `nombre`, `email`, `edad`, `activo` |
-| Sesión   | No existe                                                            |
-| Roles    | No existen                                                           |
+| Sesión   | No existe                                                             |
+| Roles    | No existen                                                            |
 
 ## Plan / pendiente
 

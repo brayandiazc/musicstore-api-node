@@ -15,10 +15,10 @@
 
 ## 2. Segmentos de cliente
 
-| Segmento              | Descripción                               | Notas          |
-| --------------------- | ----------------------------------------- | -------------- |
-| Estudiantes de Node   | Aprenden Express + Mongoose               | Público principal |
-| Docentes / mentores   | Buscan un caso base para enseñar CRUD/MVC | Reutilizan el repo |
+| Segmento            | Descripción                               | Notas              |
+| ------------------- | ----------------------------------------- | ------------------ |
+| Estudiantes de Node | Aprenden Express + Mongoose               | Público principal  |
+| Docentes / mentores | Buscan un caso base para enseñar CRUD/MVC | Reutilizan el repo |
 
 ## 3. Propuesta de valor única
 
@@ -27,12 +27,12 @@
 
 ## 4. Solución (el producto)
 
-| Módulo / Capacidad  | Qué resuelve                                     |
-| ------------------- | ------------------------------------------------ |
-| CRUD de Usuarios    | Gestión de propietarios con validaciones         |
-| CRUD de Guitarras   | Gestión de catálogo con dueño obligatorio        |
-| Relación 1:N        | Muestra referencias y `populate` en Mongoose     |
-| Documentación `docs/` | Enseña a documentar arquitectura y decisiones  |
+| Módulo / Capacidad    | Qué resuelve                                  |
+| --------------------- | --------------------------------------------- |
+| CRUD de Usuarios      | Gestión de propietarios con validaciones      |
+| CRUD de Guitarras     | Gestión de catálogo con dueño obligatorio     |
+| Relación 1:N          | Muestra referencias y `populate` en Mongoose  |
+| Documentación `docs/` | Enseña a documentar arquitectura y decisiones |
 
 ## 5. Canales
 

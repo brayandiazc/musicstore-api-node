@@ -19,13 +19,13 @@ Las respuestas de error devuelven un objeto con `message`:
 { "message": "Guitarra no encontrada" }
 ```
 
-| Código HTTP | Cuándo                                                        |
-| ----------- | ------------------------------------------------------------ |
-| 200         | Consulta o actualización exitosa                             |
-| 201         | Recurso creado                                               |
-| 400         | Datos inválidos al crear (validación de esquema)             |
-| 404         | Recurso no encontrado por ID                                 |
-| 500         | Error interno (fallo de consulta / conexión)                 |
+| Código HTTP | Cuándo                                           |
+| ----------- | ------------------------------------------------ |
+| 200         | Consulta o actualización exitosa                 |
+| 201         | Recurso creado                                   |
+| 400         | Datos inválidos al crear (validación de esquema) |
+| 404         | Recurso no encontrado por ID                     |
+| 500         | Error interno (fallo de consulta / conexión)     |
 
 ## Endpoints
 

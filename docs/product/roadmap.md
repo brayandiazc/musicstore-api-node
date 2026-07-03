@@ -29,11 +29,13 @@ esquema. Sin autenticación ni tests automatizados todavía.
 - ✅ Relación 1:N con `populate`.
 - ✅ Documentación `docs/` y gobernanza del repositorio.
 
-### v1.1 — Calidad 📋
+### v1.1 — Calidad 🚧
 
-- 📋 Suite de tests (ver [`../conventions/testing.md`](../conventions/testing.md)).
-- 📋 Linter y formateo automatizados (ver [`../conventions/quality-tooling.md`](../conventions/quality-tooling.md)).
+- ✅ Suite de tests con Jest + Supertest (ver [`../conventions/testing.md`](../conventions/testing.md)).
+- ✅ Linter y formateo automatizados con ESLint + Prettier (ver [`../conventions/quality-tooling.md`](../conventions/quality-tooling.md)).
+- ✅ CI en GitHub Actions (lint + formato + tests).
 - 📋 Manejo de errores centralizado y validación consistente (400 vs 500).
+- 📋 Tests de endpoints con base de datos (`mongodb-memory-server`).
 
 ### v2.0 — Autenticación 📋
 

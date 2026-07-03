@@ -52,12 +52,31 @@ Para ejecutar el servidor en modo de desarrollo, utiliza el siguiente comando:
 npm run dev
 ```
 
+Una vez arrancado, hay un healthcheck en `GET /` que responde
+`{ "status": "ok" }` — útil para verificar que la API está viva.
+
+## Scripts disponibles
+
+| Script                  | Qué hace                                  |
+| ----------------------- | ----------------------------------------- |
+| `npm start`             | Inicia el servidor (producción)           |
+| `npm run dev`           | Servidor con recarga (nodemon)            |
+| `npm test`              | Ejecuta los tests (Jest)                  |
+| `npm run test:coverage` | Tests con reporte de cobertura            |
+| `npm run lint`          | Analiza el código con ESLint              |
+| `npm run lint:fix`      | Corrige problemas de lint autocorregibles |
+| `npm run format`        | Formatea el código con Prettier           |
+
+Las convenciones de calidad y testing se documentan en
+[`docs/conventions/quality-tooling.md`](docs/conventions/quality-tooling.md) y
+[`docs/conventions/testing.md`](docs/conventions/testing.md).
+
 ## Estructura del Proyecto
 
 Este proyecto sigue una estructura basada en el patrón **MVC** (Model-View-Controller) para mejorar la organización y escalabilidad.
 
 ```
-my-project/
+musicstore-api-node/
 ├── controllers/          # Controladores de lógica de negocio
 │   ├── guitarraController.js
 │   └── usuarioController.js
@@ -69,8 +88,11 @@ my-project/
 │   └── usuario.js
 ├── config/               # Configuración de conexión a MongoDB
 │   └── db.js
-├── .env                  # Variables de entorno
-├── index.js              # Punto de entrada del servidor
+├── tests/                # Tests (Jest + Supertest)
+├── docs/                 # Documentación del proyecto
+├── app.js                # App Express (middlewares, rutas) — exportable/testeable
+├── index.js              # Punto de entrada: conecta a la BD y arranca el servidor
+├── .env                  # Variables de entorno (no versionado)
 └── package.json          # Dependencias y scripts del proyecto
 ```
 

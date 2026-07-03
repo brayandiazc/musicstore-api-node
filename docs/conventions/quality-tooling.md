@@ -5,11 +5,10 @@
 
 ## Stack
 
-- **Linter**: [LINTER].
-- **Formateador**: [FORMATEADOR].
-- **Análisis estático / seguridad**: [HERRAMIENTA].
-- **Auditoría de dependencias**: [HERRAMIENTA].
-- **Orquestador de git hooks**: [HERRAMIENTA] (opcional).
+- **Linter**: ESLint (flat config en `eslint.config.js`, sobre `@eslint/js` recommended).
+- **Formateador**: Prettier (`.prettierrc.json`); `eslint-config-prettier` evita conflictos de reglas.
+- **Auditoría de dependencias**: `npm audit`.
+- **Orquestador de git hooks**: no configurado aún (candidato: Husky + lint-staged).
 
 ## Git hooks
 
@@ -18,15 +17,17 @@ Estrategia sugerida: hooks baratos y rápidos en `pre-commit`, los más costosos
 
 ### pre-commit (en cada commit)
 
-- Linter sobre archivos cambiados.
-- Formato automático.
-- Verificación de trailing whitespace, fin de archivo, conflictos sin resolver.
+- `npm run lint` sobre los archivos cambiados.
+- `npm run format` (o `format:check`).
 
 ### pre-push (al subir)
 
-- Linter completo.
-- Tests (o un subconjunto rápido).
-- Auditoría de dependencias.
+- `npm run lint` completo.
+- `npm test`.
+- `npm audit`.
+
+> Mientras no haya orquestador de hooks, estos checks los ejecuta CI
+> (`.github/workflows/ci.yml`) en cada push/PR.
 
 ## Reglas
 
@@ -36,11 +37,13 @@ Estrategia sugerida: hooks baratos y rápidos en `pre-commit`, los más costosos
 ## Comandos útiles
 
 ```bash
-[COMANDO_LINT]
-[COMANDO_FORMAT]
-[COMANDO_AUDIT_DEPENDENCIAS]
+npm run lint          # Reporta problemas de ESLint
+npm run lint:fix      # Corrige lo autocorregible
+npm run format        # Formatea con Prettier (escribe)
+npm run format:check  # Verifica formato sin escribir (usado en CI)
+npm audit             # Auditoría de dependencias
 ```
 
 ## Referencias
 
-- [Documentación de las herramientas elegidas].
+- [ESLint](https://eslint.org/docs/latest/) · [Prettier](https://prettier.io/docs/en/)

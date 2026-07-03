@@ -2,7 +2,7 @@
 
 - **Estado**: Aceptada
 - **Fecha**: 2026-07-02
-- **Decisores**: [NOMBRES]
+- **Decisores**: Brayan Diaz C
 
 ## Contexto y problema
 

@@ -5,11 +5,15 @@
 > [`../architecture/auth.md`](../architecture/auth.md).
 > **Última actualización**: 2026-07-02
 
-## Stack
+> ℹ️ **Aún no implementado.** Este documento define los estándares a seguir
+> **cuando** se añada autenticación (hito v2.0 del [roadmap](../product/roadmap.md)).
+> Hoy la API no autentica.
 
-- **Autenticación**: [MECANISMO / LIBRERÍA].
-- **Autorización**: [MECANISMO / LIBRERÍA].
-- **Hashing de contraseñas**: [bcrypt / argon2 / …].
+## Stack (previsto)
+
+- **Autenticación**: JWT (candidato: `jsonwebtoken`).
+- **Autorización**: middleware por propietario del recurso; RBAC si crecen los roles.
+- **Hashing de contraseñas**: bcrypt o argon2.
 
 ## Reglas
 
@@ -31,12 +35,6 @@
 # Pseudocódigo de verificación de autorización
 if not current_user.can?(:accion, recurso)
   rechazar(403)
-```
-
-## Comandos útiles
-
-```bash
-[COMANDO_RELEVANTE]
 ```
 
 ## Referencias

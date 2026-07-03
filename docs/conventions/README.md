@@ -10,14 +10,14 @@ feature concreta.
 
 ## Convenciones incluidas
 
-| Convención                                         | Tema                               |
-| -------------------------------------------------- | ---------------------------------- |
-| [authentication.md](authentication.md)             | Autenticación y autorización       |
-| [database.md](database.md)                         | Modelado de datos y migraciones    |
-| [deploy.md](deploy.md)                             | Despliegue y operaciones           |
-| [quality-tooling.md](quality-tooling.md)           | Linters, formato y git hooks       |
-| [secrets.md](secrets.md)                           | Manejo de secretos y credenciales  |
-| [testing.md](testing.md)                           | Estrategia y estándares de testing |
+| Convención                               | Tema                               |
+| ---------------------------------------- | ---------------------------------- |
+| [authentication.md](authentication.md)   | Autenticación y autorización       |
+| [database.md](database.md)               | Modelado de datos y migraciones    |
+| [deploy.md](deploy.md)                   | Despliegue y operaciones           |
+| [quality-tooling.md](quality-tooling.md) | Linters, formato y git hooks       |
+| [secrets.md](secrets.md)                 | Manejo de secretos y credenciales  |
+| [testing.md](testing.md)                 | Estrategia y estándares de testing |
 
 ## Agregar una convención
 

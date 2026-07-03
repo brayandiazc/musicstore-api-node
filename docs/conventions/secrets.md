@@ -10,11 +10,11 @@
 
 ## Dónde vive cada cosa
 
-| Tipo                         | Dónde                                         |
-| ---------------------------- | --------------------------------------------- |
-| Secretos de aplicación       | [GESTOR_DE_SECRETOS / .env local]             |
-| Variables de infraestructura | Variables de entorno del entorno              |
-| Secretos de CI/CD            | Secrets del proveedor (p. ej. GitHub Actions) |
+| Tipo                         | Dónde                                     |
+| ---------------------------- | ----------------------------------------- |
+| Secretos de aplicación       | `.env` local (`MONGODB_URI`)              |
+| Variables de infraestructura | Variables de entorno del hosting (Render) |
+| Secretos de CI/CD            | Secrets del proveedor (GitHub Actions)    |
 
 ## Reglas
 
@@ -34,10 +34,14 @@ cp .env.example .env
 ## Comandos útiles
 
 ```bash
-[COMANDO_GESTION_SECRETOS]
+# Verificar que .env NUNCA está versionado (la salida debe estar vacía)
+git ls-files | grep -x .env
+
+# Confirmar que .env está ignorado
+git check-ignore .env
 ```
 
 ## Referencias
 
 - [SECURITY.md](../../SECURITY.md) — política de seguridad.
-- [Documentación del gestor de secretos elegido].
+- [`.env.example`](../../.env.example) — contrato de variables (sin valores reales).
