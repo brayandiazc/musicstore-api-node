@@ -19,6 +19,19 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Security
 
+## [1.1.1] - 2026-07-02
+
+### Added
+
+- Tests de integración de endpoints (`tests/api.test.js`) con **mongodb-memory-server**:
+  CRUD de usuarios y guitarras contra una MongoDB en memoria (16 tests en total).
+- `jest.config.js` con `testTimeout` amplio para la descarga del binario de `mongod`.
+
+### Security
+
+- Resueltas las 8 vulnerabilidades reportadas por `npm audit` (express, mongoose,
+  path-to-regexp, qs, body-parser, picomatch) vía `npm audit fix` — 0 vulnerabilidades.
+
 ## [1.1.0] - 2026-07-02
 
 ### Added
@@ -54,7 +67,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 <!--
 Enlaces de comparación entre versiones:
-[Unreleased]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/brayandiazc/musicstore-api-node/releases/tag/v1.0.0
 -->

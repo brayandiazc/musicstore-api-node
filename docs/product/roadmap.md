@@ -34,8 +34,8 @@ esquema. Sin autenticación ni tests automatizados todavía.
 - ✅ Suite de tests con Jest + Supertest (ver [`../conventions/testing.md`](../conventions/testing.md)).
 - ✅ Linter y formateo automatizados con ESLint + Prettier (ver [`../conventions/quality-tooling.md`](../conventions/quality-tooling.md)).
 - ✅ CI en GitHub Actions (lint + formato + tests).
+- ✅ Tests de endpoints con base de datos (`mongodb-memory-server`).
 - 📋 Manejo de errores centralizado y validación consistente (400 vs 500).
-- 📋 Tests de endpoints con base de datos (`mongodb-memory-server`).
 
 ### v2.0 — Autenticación 📋
 

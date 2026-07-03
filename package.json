@@ -1,6 +1,6 @@
 {
   "name": "musicstore-api-node",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -48,6 +48,7 @@
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.7.0",
     "jest": "^30.4.2",
+    "mongodb-memory-server": "^11.2.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.9.4",
     "supertest": "^7.2.2"

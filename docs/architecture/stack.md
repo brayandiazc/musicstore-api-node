@@ -25,7 +25,7 @@
 | ----------- | -------------------------------------------------------------------- |
 | Dev         | nodemon (^3.1.7) — recarga en caliente en desarrollo                 |
 | CI/CD       | GitHub Actions (`.github/workflows/ci.yml`) — lint + formato + tests |
-| Testing     | Jest (^30) + Supertest (^7)                                          |
+| Testing     | Jest (^30) + Supertest (^7) + mongodb-memory-server (^11)            |
 | Lint/Format | ESLint (^10) + Prettier (^3)                                         |
 
 ## Justificación de elecciones
