@@ -36,20 +36,27 @@ musicstore-api-node/
 ├── controllers/   # Lógica de negocio (guitarraController, usuarioController)
 ├── models/        # Esquemas Mongoose (Guitarra, Usuario)
 ├── routes/        # Definición de rutas Express (guitarra, usuario)
+├── middleware/    # asyncHandler y errorHandler (manejo centralizado de errores)
+├── utils/         # AppError (error con código HTTP)
 ├── config/        # Conexión a MongoDB (db.js)
-├── index.js       # Punto de entrada: middlewares, montaje de rutas, arranque
+├── tests/         # Tests (Jest + Supertest)
+├── app.js         # App Express (middlewares, rutas, manejo de errores) — exportable
+├── index.js       # Punto de entrada: conecta a la BD y arranca el servidor
 └── package.json
 ```
 
 ## Componentes
 
-| Componente     | Responsabilidad                                                   | Tecnología     |
-| -------------- | ----------------------------------------------------------------- | -------------- |
-| `index.js`     | Configura CORS, `express.json`, conecta a la BD y monta las rutas | Express        |
-| `routes/`      | Mapean cada verbo HTTP + ruta a un método del controlador         | Express Router |
-| `controllers/` | Implementan el CRUD y responden con JSON / códigos de estado      | Node.js        |
-| `models/`      | Definen esquema, validaciones y relaciones sobre MongoDB          | Mongoose       |
-| `config/db.js` | Establece la conexión a MongoDB usando `MONGODB_URI`              | Mongoose       |
+| Componente                | Responsabilidad                                                       | Tecnología     |
+| ------------------------- | --------------------------------------------------------------------- | -------------- |
+| `app.js`                  | Ensambla middlewares, rutas y el manejo de errores; exporta la app    | Express        |
+| `index.js`                | Conecta a la BD y arranca el servidor                                 | Express        |
+| `routes/`                 | Mapean cada verbo HTTP + ruta a un método del controlador             | Express Router |
+| `controllers/`            | Implementan el CRUD; delegan errores a `next()` vía `asyncHandler`    | Node.js        |
+| `models/`                 | Definen esquema, validaciones y relaciones sobre MongoDB              | Mongoose       |
+| `middleware/errorHandler` | Traduce errores (validación, cast, único) a códigos HTTP consistentes | Express        |
+| `utils/AppError`          | Error con `statusCode` para fallos esperados (p. ej. 404)             | Node.js        |
+| `config/db.js`            | Establece la conexión a MongoDB usando `MONGODB_URI`                  | Mongoose       |
 
 ## Decisiones clave
 
@@ -65,6 +72,8 @@ musicstore-api-node/
 ## Reglas no negociables
 
 - Toda validación de datos vive en el esquema Mongoose; los controladores no duplican reglas.
+- Los controladores no capturan errores manualmente: los propagan con `asyncHandler`
+  y el `errorHandler` central decide el código HTTP. Un solo lugar define el contrato de errores.
 - Cada guitarra pertenece a un único usuario (`usuario` es obligatorio).
 - Las credenciales de la base de datos nunca se versionan: van en `.env` (ver [`../conventions/secrets.md`](../conventions/secrets.md)).
 

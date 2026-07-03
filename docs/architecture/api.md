@@ -13,19 +13,26 @@
 
 ## Manejo de errores
 
-Las respuestas de error devuelven un objeto con `message`:
+Los errores se procesan en un **middleware centralizado**
+(`middleware/errorHandler.js`), de modo que todas las respuestas de error tienen
+la misma forma `{ message }` y un código HTTP consistente:
 
 ```json
 { "message": "Guitarra no encontrada" }
 ```
 
-| Código HTTP | Cuándo                                           |
-| ----------- | ------------------------------------------------ |
-| 200         | Consulta o actualización exitosa                 |
-| 201         | Recurso creado                                   |
-| 400         | Datos inválidos al crear (validación de esquema) |
-| 404         | Recurso no encontrado por ID                     |
-| 500         | Error interno (fallo de consulta / conexión)     |
+| Código HTTP | Cuándo                                                            |
+| ----------- | ----------------------------------------------------------------- |
+| 200         | Consulta o actualización exitosa                                  |
+| 201         | Recurso creado                                                    |
+| 400         | Datos inválidos (validación de esquema) o ID con formato inválido |
+| 404         | Recurso no encontrado por ID, o ruta inexistente                  |
+| 409         | Conflicto por índice único (p. ej. email o nombre ya existente)   |
+| 500         | Error interno inesperado                                          |
+
+El mapeo lo realiza `errorHandler`: `ValidationError` y `CastError` → 400,
+código `11000` (índice único) → 409, `AppError` con `statusCode` explícito
+(p. ej. "no encontrado") → ese código, y cualquier otro → 500.
 
 ## Endpoints
 

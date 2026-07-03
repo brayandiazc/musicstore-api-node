@@ -1,71 +1,49 @@
 const Usuario = require("../models/Usuario");
+const asyncHandler = require("../middleware/asyncHandler");
+const AppError = require("../utils/AppError");
 
 // Obtener todos los usuarios con sus guitarras
-exports.getUsuarios = async (req, res) => {
-  try {
-    const usuarios = await Usuario.find().populate(
-      "guitarras",
-      "nombre precio"
-    );
-    res.json(usuarios);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+exports.getUsuarios = asyncHandler(async (req, res) => {
+  const usuarios = await Usuario.find().populate("guitarras", "nombre precio");
+  res.json(usuarios);
+});
 
 // Obtener un usuario por ID con sus guitarras
-exports.getUsuarioById = async (req, res) => {
-  try {
-    const usuario = await Usuario.findById(req.params.id).populate(
-      "guitarras",
-      "nombre precio"
-    );
-    if (!usuario) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-    res.json(usuario);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+exports.getUsuarioById = asyncHandler(async (req, res) => {
+  const usuario = await Usuario.findById(req.params.id).populate(
+    "guitarras",
+    "nombre precio"
+  );
+  if (!usuario) {
+    throw new AppError("Usuario no encontrado", 404);
   }
-};
+  res.json(usuario);
+});
 
 // Crear un nuevo usuario
-exports.createUsuario = async (req, res) => {
-  try {
-    const usuario = new Usuario(req.body);
-    const nuevoUsuario = await usuario.save();
-    console.log(`Nuevo usuario creado: ${nuevoUsuario.nombre}`);
-    res.status(201).json(nuevoUsuario);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+exports.createUsuario = asyncHandler(async (req, res) => {
+  const usuario = new Usuario(req.body);
+  const nuevoUsuario = await usuario.save();
+  res.status(201).json(nuevoUsuario);
+});
 
 // Actualizar un usuario
-exports.updateUsuario = async (req, res) => {
-  try {
-    const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!usuario) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-    res.json(usuario);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+exports.updateUsuario = asyncHandler(async (req, res) => {
+  const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  if (!usuario) {
+    throw new AppError("Usuario no encontrado", 404);
   }
-};
+  res.json(usuario);
+});
 
 // Eliminar un usuario
-exports.deleteUsuario = async (req, res) => {
-  try {
-    const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id);
-    if (!usuarioEliminado) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-    console.log(`Usuario eliminado: ${usuarioEliminado.nombre}`);
-    res.json({ message: "Usuario eliminado" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+exports.deleteUsuario = asyncHandler(async (req, res) => {
+  const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id);
+  if (!usuarioEliminado) {
+    throw new AppError("Usuario no encontrado", 404);
   }
-};
+  res.json({ message: "Usuario eliminado" });
+});

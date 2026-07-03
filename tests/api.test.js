@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const request = require("supertest");
 const app = require("../app");
+const Usuario = require("../models/Usuario");
 
 // Tests de integración de los endpoints CRUD contra una instancia de MongoDB
 // en memoria. Ejercitan routes → controllers → models → base de datos real.
@@ -63,6 +64,23 @@ describe("Endpoints de Usuarios", () => {
     const id = new mongoose.Types.ObjectId().toString();
     const res = await request(app).get(`/api/usuarios/${id}`);
     expect(res.status).toBe(404);
+    expect(res.body.message).toBe("Usuario no encontrado");
+  });
+
+  it("GET /api/usuarios/:id responde 400 con un id malformado", async () => {
+    const res = await request(app).get("/api/usuarios/no-es-un-id-valido");
+    expect(res.status).toBe(400);
+    expect(res.body.message).toBeDefined();
+  });
+
+  it("POST /api/usuarios responde 409 ante email duplicado", async () => {
+    // Asegura que el índice único de email exista en la colección.
+    await Usuario.init();
+    const payload = { nombre: "Repetido", email: "dup@example.com" };
+    await request(app).post("/api/usuarios").send(payload);
+
+    const res = await request(app).post("/api/usuarios").send(payload);
+    expect(res.status).toBe(409);
   });
 });
 

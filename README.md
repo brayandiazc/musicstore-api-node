@@ -86,11 +86,13 @@ musicstore-api-node/
 ├── routes/               # Rutas del servidor
 │   ├── guitarra.js
 │   └── usuario.js
+├── middleware/           # asyncHandler y errorHandler (manejo central de errores)
+├── utils/                # AppError (error con código HTTP)
 ├── config/               # Configuración de conexión a MongoDB
 │   └── db.js
 ├── tests/                # Tests (Jest + Supertest)
 ├── docs/                 # Documentación del proyecto
-├── app.js                # App Express (middlewares, rutas) — exportable/testeable
+├── app.js                # App Express (middlewares, rutas, errores) — exportable/testeable
 ├── index.js              # Punto de entrada: conecta a la BD y arranca el servidor
 ├── .env                  # Variables de entorno (no versionado)
 └── package.json          # Dependencias y scripts del proyecto

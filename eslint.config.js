@@ -13,6 +13,14 @@ module.exports = [
         ...globals.node,
       },
     },
+    rules: {
+      // Permite args intencionalmente sin usar con prefijo `_`
+      // (p. ej. el `_next` obligatorio del middleware de errores de Express).
+      "no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
+    },
   },
   {
     files: ["tests/**/*.js", "**/*.test.js"],

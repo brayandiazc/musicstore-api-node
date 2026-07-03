@@ -20,4 +20,12 @@ app.get("/", (req, res) => {
 app.use("/api/guitarras", require("./routes/guitarra"));
 app.use("/api/usuarios", require("./routes/usuario"));
 
+// 404 para rutas no definidas (responde JSON, coherente con el resto de la API)
+app.use((req, res) => {
+  res.status(404).json({ message: "Ruta no encontrada" });
+});
+
+// Manejo centralizado de errores: debe registrarse al final, tras las rutas.
+app.use(require("./middleware/errorHandler"));
+
 module.exports = app;

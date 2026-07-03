@@ -13,8 +13,9 @@ describe("App Express", () => {
     expect(Array.isArray(res.body.endpoints)).toBe(true);
   });
 
-  it("responde 404 en una ruta inexistente", async () => {
+  it("responde 404 con JSON en una ruta inexistente", async () => {
     const res = await request(app).get("/ruta-que-no-existe");
     expect(res.status).toBe(404);
+    expect(res.body.message).toBe("Ruta no encontrada");
   });
 });

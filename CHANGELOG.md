@@ -19,6 +19,29 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Security
 
+## [1.2.0] - 2026-07-02
+
+### Added
+
+- Manejo de errores **centralizado** (`middleware/errorHandler.js`): mapea
+  `ValidationError` y `CastError` → 400, índice único (`11000`) → 409, `AppError`
+  con `statusCode` → ese código, y el resto → 500. Respuesta uniforme `{ message }`.
+- `middleware/asyncHandler.js` para propagar errores async a `next()` sin try/catch.
+- `utils/AppError.js` (error con código HTTP para fallos esperados como 404).
+- Handler de **404 con JSON** para rutas no definidas (`{ "message": "Ruta no encontrada" }`).
+- Tests de los nuevos casos: id malformado → 400, email duplicado → 409, 404 con JSON (18 tests).
+
+### Changed
+
+- Los controladores usan `asyncHandler` + `throw AppError` en lugar de try/catch repetido.
+- Las actualizaciones (`PUT`) ahora ejecutan validadores de esquema (`runValidators: true`).
+
+### Fixed
+
+- `updateGuitarra` registraba `guitarra.nombre` antes de comprobar `null` → podía
+  fallar con 500 en vez de responder 404.
+- IDs con formato inválido devolvían 500; ahora devuelven 400 de forma consistente.
+
 ## [1.1.1] - 2026-07-02
 
 ### Added
@@ -67,7 +90,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 <!--
 Enlaces de comparación entre versiones:
-[Unreleased]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/brayandiazc/musicstore-api-node/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/brayandiazc/musicstore-api-node/releases/tag/v1.0.0
